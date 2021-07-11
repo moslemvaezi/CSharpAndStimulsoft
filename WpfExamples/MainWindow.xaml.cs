@@ -78,7 +78,8 @@ namespace WpfExamples
             var reportPath = Path.Combine(ProjectRootPath, "WpfReport.mrt");
             var report = new StiReport();
             report.Load(reportPath);
-            report.ShowWithWpf();
+            //report.ShowWithWpf();
+            report.Show();
         }
     }
 }
