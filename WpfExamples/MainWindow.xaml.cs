@@ -24,7 +24,7 @@ namespace WpfExamples
     public partial class MainWindow : Window
     {
         private static readonly string ProjectRootPath = $"{Environment.CurrentDirectory}/Reports";
-
+        
         public MainWindow()
         {
             InitializeComponent();
@@ -38,9 +38,9 @@ namespace WpfExamples
                 Directory.CreateDirectory(ProjectRootPath);
             }
 
-            //Generate random name for report
-            var reportName = Guid.NewGuid().ToString("n").Substring(0, 8);
-            var reportPath = Path.Combine(ProjectRootPath, $"{reportName}.mrt");
+            //Generate name for report
+            
+            var reportPath = Path.Combine(ProjectRootPath, "WpfReport.mrt");
 
             var report = new StiReport
             {
@@ -54,7 +54,31 @@ namespace WpfExamples
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+            var reportPath = Path.Combine(ProjectRootPath, "WpfReport.mrt");
+            if (!File.Exists(reportPath))
+            {
+                MessageBox.Show("File Not Found!");
+            }
 
+            var report = new StiReport();
+            report.Load(reportPath);
+            report.DesignWithWpf();
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            var reportPath = Path.Combine(ProjectRootPath, "WpfReport.mrt");
+            var report = new StiReport();
+            report.Load(reportPath);
+            report.Print();
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            var reportPath = Path.Combine(ProjectRootPath, "WpfReport.mrt");
+            var report = new StiReport();
+            report.Load(reportPath);
+            report.ShowWithWpf();
         }
     }
 }
